@@ -1,8 +1,10 @@
+import { WordGame } from '../pages/wordGame';
+
 function App() {
     return (
-        <>
-            <h1>hi</h1>
-        </>
+        <div>
+            <WordGame />
+        </div>
     );
 }
 

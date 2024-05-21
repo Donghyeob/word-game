@@ -5,7 +5,8 @@ const WORD_QUANTITY = 50;
 
 export const getRandomWords = createAsyncThunk('target/getRandomWords', async () => {
     try {
-        return await getWords(WORD_QUANTITY);
+        const response = await getWords(WORD_QUANTITY);
+        return response.data;
     } catch (error) {
         console.log('thunk get random word error', error);
     }

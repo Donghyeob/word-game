@@ -8,8 +8,7 @@ const initialState = {
 
 /**
  * 1. API를 이용해 단어를 가져옴
- * 2. 배열에서 하나의 단어를 꺼내야함
- * 3. 정답인 엘리먼트는 삭제해야함
+ * 2. 배열에서 하나의 단어를 꺼내고 엘리먼트는 삭제해야함
  */
 const targetSlice = createSlice({
     name: 'target',
@@ -19,7 +18,6 @@ const targetSlice = createSlice({
             state.targetWord = state.randomWords[Math.floor(Math.random() * state.randomWords.length)];
             state.randomWords = state.randomWords.filter(el => el !== state.targetWord);
         },
-        deleteCorrectWord: (state, action) => {},
     },
     extraReducers: builder => {
         builder
