@@ -8,7 +8,6 @@ globalStyle('html, body', {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundImage: 'linear-gradient(to bottom, #a8d0f3, #d7fbfc)',
-    boxSizing: 'border-box',
 });
 
 export const bodyLabel = style({
@@ -28,4 +27,5 @@ export const radiusBox = style({
     fontSize: '36px',
     fontWeight: '500',
     color: '#444444',
+    boxSizing: 'border-box',
 });
