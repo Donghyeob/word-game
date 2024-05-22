@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import targetSlice from '../../../entities/target/targetSlice';
+import wordGameSlice from '../../../pages/wordGame/model/wordGameSlice';
+import randomSlice from '../../../entities/random/randomSlice';
 
 const rootReducer = (state, action) => {
     const combineReducer = combineReducers({
-        target: targetSlice.reducer,
+        wordGame: wordGameSlice.reducer,
+        random: randomSlice.reducer,
     });
     return combineReducer(state, action);
 };

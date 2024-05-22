@@ -1,14 +1,24 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import targetSlice from '../../../entities/target/targetSlice';
+import randomSlice from '../../../entities/random/randomSlice';
+import { targetWordBox, targetWordWrapper } from './styled.css';
+import { bodyLabel } from '../../../app/styles/styles.css';
 
 export const TargetWord = () => {
     const dispatch = useDispatch();
-    const targetWord = useSelector(state => state.target.targetWord);
+    const isLoading = useSelector(state => state.random.isLoading);
+    const targetWord = useSelector(state => state.random.targetWord);
 
     useEffect(() => {
-        dispatch(targetSlice.actions.getOneWord());
-    }, [targetWord]);
+        if (!isLoading) {
+            dispatch(randomSlice.actions.getOneWord());
+        }
+    }, [isLoading]);
 
-    return <h1>{targetWord}</h1>;
+    return (
+        <div className={targetWordWrapper}>
+            <span className={bodyLabel}>제시어</span>
+            <div className={targetWordBox}>{targetWord}</div>
+        </div>
+    );
 };

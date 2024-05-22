@@ -7,7 +7,8 @@ const isDev = process.env.NODE_ENV !== 'production';
 const createStore = () => {
     return configureStore({
         reducer: rootReducer,
-        middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
+        middleware: getDefaultMiddleware =>
+            getDefaultMiddleware().concat(logger),
         devTools: isDev,
     });
 };
