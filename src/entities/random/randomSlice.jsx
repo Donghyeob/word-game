@@ -22,11 +22,10 @@ const randomSlice = createSlice({
                     Math.floor(Math.random() * state.randomWords.length)
                 ];
         },
-        corrected: (state, action) => {
+        corrected: state => {
             state.randomWords = state.randomWords.filter(
                 el => el !== state.targetWord,
             );
-            action.getOneWord();
         },
     },
     extraReducers: builder => {

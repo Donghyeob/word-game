@@ -7,7 +7,13 @@ import { TimeLimit } from '../../../widget/timeLimit';
 import wordGameSlice from '../model/wordGameSlice';
 import { getRandomWords } from '../../../entities/random/randomThunk';
 import { Input } from '../../../features/input';
-import { bodyWrapper, headerWrapper, wordGameWrapper } from './styled.css';
+import { Correct, Wrong } from '../../../widget/result';
+import {
+    bodyWrapper,
+    footerWrapper,
+    headerWrapper,
+    wordGameWrapper,
+} from './styled.css';
 
 export const WordGame = () => {
     const dispatch = useDispatch();
@@ -21,6 +27,10 @@ export const WordGame = () => {
         }
     }, [isStart, isLoading]);
 
+    // useEffect(() => {
+    //     dispatch(getRandomWords());
+    // }, []);
+
     return (
         <div className={wordGameWrapper}>
             <div className={headerWrapper}>
@@ -32,7 +42,10 @@ export const WordGame = () => {
                 <TimeLimit />
                 <Input />
             </div>
-            <div className="footer">correct & wrong</div>
+            <div className={footerWrapper}>
+                <Correct />
+                <Wrong />
+            </div>
         </div>
     );
 };

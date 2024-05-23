@@ -25,4 +25,8 @@ export const bodyWrapper = style({
     flexDirection: 'column',
 });
 
-export const footerWrapper = style({});
+export const footerWrapper = style({
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+});

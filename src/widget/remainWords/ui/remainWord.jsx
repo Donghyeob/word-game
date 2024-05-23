@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { remainDiv } from './styled.css';
 
 export const RemainWord = () => {
@@ -6,7 +7,11 @@ export const RemainWord = () => {
     const randomWordsLength = useSelector(
         state => state.random.randomWords.length,
     );
-    const remainWordCount = isLoading ? 0 : randomWordsLength;
+    const [remainWordsCount, setRemainWordsCount] = useState(randomWordsLength);
 
-    return <div className={remainDiv}>{remainWordCount}</div>;
+    useEffect(() => {
+        setRemainWordsCount(isLoading ? 0 : randomWordsLength);
+    }, [isLoading, randomWordsLength]);
+
+    return <div className={remainDiv}>{remainWordsCount}</div>;
 };

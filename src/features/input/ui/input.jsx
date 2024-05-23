@@ -1,9 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import correctSlice from '../../../widget/result/correct/model/correctSlice';
+import wrongSlice from '../../../widget/result/wrong/model/wrongSlice';
 import { bodyLabel, radiusBox } from '../../../app/styles/styles.css';
 import { inputBox, inputWrapper } from './styled.css';
+import randomSlice from '../../../entities/random/randomSlice';
 
 export const Input = () => {
+    const dispatch = useDispatch();
     const isStart = useSelector(state => state.wordGame.isStart);
     const targetWord = useSelector(state => state.random.targetWord);
     const [value, setValue] = useState('');
@@ -11,9 +15,11 @@ export const Input = () => {
 
     const wordCheck = () => {
         if (targetWord === value) {
-            console.log('정답');
+            dispatch(correctSlice.actions.addCorrect(value));
+            dispatch(randomSlice.actions.corrected());
+            dispatch(randomSlice.actions.getOneWord());
         } else {
-            console.log('오답');
+            dispatch(wrongSlice.actions.addWrong(value));
         }
     };
 
@@ -24,6 +30,7 @@ export const Input = () => {
     const onKeyDownInput = event => {
         if (event.key === 'Enter' && value !== '') {
             wordCheck();
+            setValue('');
         }
     };
 

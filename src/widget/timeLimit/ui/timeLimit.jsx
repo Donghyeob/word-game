@@ -9,7 +9,7 @@ export const TimeLimit = () => {
     const isStart = useSelector(state => state.wordGame.isStart);
     const isLoading = useSelector(state => state.random.isLoading);
     const INTERVAL_TIME = 1000;
-    const INITIAL_TIME = 10;
+    const INITIAL_TIME = 60;
     const [time, setTime] = useState(INITIAL_TIME);
     const timerRef = useRef(null);
 
