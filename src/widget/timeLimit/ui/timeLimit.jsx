@@ -1,9 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { bodyLabel, radiusBox } from '../../../app/styles/styles.css';
 import { timeLimitBox, timeLimitWrapper } from './styled.css';
+import wordGameSlice from '../../../pages/wordGame/model/wordGameSlice';
 
 export const TimeLimit = () => {
+    const dispatch = useDispatch();
     const isStart = useSelector(state => state.wordGame.isStart);
     const isLoading = useSelector(state => state.random.isLoading);
     const INTERVAL_TIME = 1000;
@@ -12,24 +14,26 @@ export const TimeLimit = () => {
     const timerRef = useRef(null);
 
     const timer = () => {
-        if (isStart && !isLoading) {
-            timerRef.current = setInterval(() => {
-                setTime(prev => prev - 1);
-            }, INTERVAL_TIME);
-        }
+        timerRef.current = setInterval(() => {
+            setTime(prev => prev - 1);
+        }, INTERVAL_TIME);
 
-        if (time === 0) {
+        if (isStart === 'start' && time === 0) {
             clearInterval(timerRef.current);
+            dispatch(wordGameSlice.actions.changeGameState('end'));
         }
     };
 
     useEffect(() => {
-        setTime(INITIAL_TIME);
+        if (isStart === 'init') {
+            setTime(INITIAL_TIME);
+        }
     }, [isStart]);
 
     useEffect(() => {
-        timer();
-
+        if (isStart === 'start' && !isLoading) {
+            timer();
+        }
         return () => clearInterval(timerRef.current);
     }, [time, isStart, isLoading]);
 

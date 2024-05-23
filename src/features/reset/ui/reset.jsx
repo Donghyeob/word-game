@@ -7,7 +7,7 @@ export const Reset = () => {
     const buttonState = useSelector(state => state.random.buttonState);
 
     const onClickReset = () => {
-        dispatch(wordGameSlice.actions.changeGameState(false));
+        dispatch(wordGameSlice.actions.changeGameState('init'));
     };
 
     return (

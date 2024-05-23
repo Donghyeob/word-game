@@ -6,6 +6,7 @@ import { RemainWord } from '../../../widget/remainWords';
 import { TimeLimit } from '../../../widget/timeLimit';
 import wordGameSlice from '../model/wordGameSlice';
 import { getRandomWords } from '../../../entities/random/randomThunk';
+import { Input } from '../../../features/input';
 import { bodyWrapper, headerWrapper, wordGameWrapper } from './styled.css';
 
 export const WordGame = () => {
@@ -14,8 +15,8 @@ export const WordGame = () => {
     const isStart = useSelector(state => state.wordGame.isStart);
 
     useEffect(() => {
-        if (!isStart && !isLoading) {
-            dispatch(wordGameSlice.actions.changeGameState(true));
+        if (isStart === 'init' && !isLoading) {
+            dispatch(wordGameSlice.actions.changeGameState('start'));
             dispatch(getRandomWords());
         }
     }, [isStart, isLoading]);
@@ -29,6 +30,7 @@ export const WordGame = () => {
             <div className={bodyWrapper}>
                 <TargetWord />
                 <TimeLimit />
+                <Input />
             </div>
             <div className="footer">correct & wrong</div>
         </div>

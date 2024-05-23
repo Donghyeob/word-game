@@ -20,6 +20,7 @@ export const headerWrapper = style({
 export const bodyWrapper = style({
     width: '450px',
     gap: '40px',
+    marginBottom: '90px',
     display: 'flex',
     flexDirection: 'column',
 });

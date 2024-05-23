@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    isStart: false,
+    isStart: 'init',
 };
 
 const wordGameSlice = createSlice({
