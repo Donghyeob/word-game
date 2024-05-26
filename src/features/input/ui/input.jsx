@@ -8,10 +8,9 @@ import randomSlice from '../../../entities/random/randomSlice';
 
 export const Input = () => {
     const dispatch = useDispatch();
-    const isStart = useSelector(state => state.wordGame.isStart);
     const targetWord = useSelector(state => state.random.targetWord);
+    const inputState = useSelector(state => state.random.inputState);
     const [value, setValue] = useState('');
-    const [disabled, setDisabled] = useState(false);
 
     const wordCheck = () => {
         if (targetWord === value) {
@@ -35,14 +34,10 @@ export const Input = () => {
     };
 
     useEffect(() => {
-        console.log('is start check', isStart);
-        if (isStart === 'end') {
+        if (!inputState) {
             setValue('');
-            setDisabled(true);
-        } else if (isStart === 'start') {
-            setDisabled(false);
         }
-    }, [isStart]);
+    }, [inputState]);
 
     return (
         <div className={inputWrapper}>
@@ -52,7 +47,7 @@ export const Input = () => {
                 value={value}
                 onChange={onChangeInput}
                 onKeyDown={onKeyDownInput}
-                disabled={disabled}
+                disabled={inputState}
             />
         </div>
     );

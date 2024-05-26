@@ -52,3 +52,10 @@
     - 오답 배열에 추가하여 관리
 - 초기화
     - 모든 Domain 초기화 진행
+
+## 수정사항
+- Layout, children 만들기 &rarr; 이건 예시를 한 번 봐야 감이 잡힐듯 지금 규모에서는 모르겠음
+- ~~slice 줄이기~~ &rarr; isStart 상태 관리 삭제
+- ~~useEffect 불필요 코드 개선~~ &rarr; 초기 useEffect 개선 및 timer 불필요 부분 삭제
+- ~~promise 상태 활용~~ &rarr; input에 대한 state 추가
+- ~~timer 박살남~~ &rarr; game state 삭제 setTimeout으로 변경

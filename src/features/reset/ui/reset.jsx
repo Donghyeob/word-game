@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import wordGameSlice from '../../../pages/wordGame/model/wordGameSlice';
 import { resetButton } from './styled.css';
+import { getRandomWords } from '../../../entities/random/randomThunk';
 
 export const Reset = () => {
     const dispatch = useDispatch();
     const buttonState = useSelector(state => state.random.buttonState);
 
     const onClickReset = () => {
-        dispatch(wordGameSlice.actions.changeGameState('init'));
+        dispatch(getRandomWords());
     };
 
     return (

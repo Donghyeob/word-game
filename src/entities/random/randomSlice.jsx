@@ -3,15 +3,12 @@ import { getRandomWords } from './randomThunk';
 
 const initialState = {
     buttonState: false,
+    inputState: true,
     randomWords: [],
     targetWord: '',
     isLoading: false,
 };
 
-/**
- * 1. API를 이용해 단어를 가져옴
- * 2. 배열에서 하나의 단어를 꺼내고 엘리먼트는 삭제해야함
- */
 const randomSlice = createSlice({
     name: 'random',
     initialState,
@@ -27,20 +24,27 @@ const randomSlice = createSlice({
                 el => el !== state.targetWord,
             );
         },
+        endGame: state => {
+            state.inputState = true;
+        },
     },
     extraReducers: builder => {
         builder
             .addCase(getRandomWords.pending, state => {
+                state.randomWords.length = 0;
                 state.buttonState = true;
+                state.inputState = true;
                 state.isLoading = true;
             })
             .addCase(getRandomWords.fulfilled, (state, action) => {
                 state.randomWords = action.payload;
                 state.buttonState = false;
+                state.inputState = false;
                 state.isLoading = false;
             })
             .addCase(getRandomWords.rejected, state => {
                 state.buttonState = false;
+                state.inputState = false;
                 state.isLoading = false;
                 // 나중에 error message 받아서 넘겨야징
             });
